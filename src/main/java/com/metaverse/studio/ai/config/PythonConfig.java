@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,14 +21,17 @@ public class PythonConfig {
 
     @Bean
     public String pythonScriptPath() {
-        // Verify script exists
-        Path path = Paths.get(scriptPath);
-        if (!Files.exists(path)) {
-            throw new IllegalStateException(
-                    "Python script not found at: " + path.toAbsolutePath()
-            );
+        try {
+            // In Railway, use /tmp directory which is writable
+            Path tempScript = Files.createTempFile("generate_clothing_", ".py");
+            try (InputStream in = getClass().getResourceAsStream("/python/generate_clothing.py")) {
+                Files.copy(in, tempScript, StandardCopyOption.REPLACE_EXISTING);
+            }
+            tempScript.toFile().setExecutable(true);
+            return tempScript.toAbsolutePath().toString();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to create temp Python script", e);
         }
-        return scriptPath;
     }
 }
 
