@@ -1,0 +1,19 @@
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "config": {
+      "nixpacks": {
+        "phases": {
+          "setup": {
+            "aptPackages": ["python3", "python3-pip"]
+          },
+          "install": {
+            "cmds": [
+              "pip install torch diffusers pillow --extra-index-url https://download.pytorch.org/whl/cpu"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
