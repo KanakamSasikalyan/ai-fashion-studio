@@ -7,10 +7,12 @@
           "setup": {
             "aptPackages": ["python3", "python3-pip"]
           },
-          "install": {
-            "cmds": [
-              "pip install torch diffusers pillow --extra-index-url https://download.pytorch.org/whl/cpu"
-            ]
+          "install": [
+            "pip install torch diffusers pillow --extra-index-url https://download.pytorch.org/whl/cpu",
+            "mvn clean package -DskipTests"
+          ],
+          "build": {
+            "cmd": "java -jar target/*.jar"
           }
         }
       }
