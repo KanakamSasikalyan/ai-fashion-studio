@@ -1,5 +1,6 @@
 package com.metaverse.studio.ai.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -7,8 +8,30 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+
+@Configuration
+public class PythonConfig {
+
+    @Value("${python.script.path:/src/main/resources/python/generate_clothing.py}")
+    private String scriptPath;
+
+    @Bean
+    public String pythonScriptPath() {
+        // Verify script exists
+        Path path = Paths.get(scriptPath);
+        if (!Files.exists(path)) {
+            throw new IllegalStateException(
+                    "Python script not found at: " + path.toAbsolutePath()
+            );
+        }
+        return scriptPath;
+    }
+}
+
+/*
 @Configuration
 public class PythonConfig {
 
@@ -29,4 +52,4 @@ public class PythonConfig {
         // If running in development (filesystem)
         return resource.getFile().getAbsolutePath();
     }
-}
+}*/
