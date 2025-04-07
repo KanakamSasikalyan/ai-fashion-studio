@@ -1,0 +1,76 @@
+2025-04-07 21:42:50,491 - FashionAI - INFO - === New Generation Request ===
+2025-04-07 21:42:50,492 - FashionAI - INFO - Prompt: 'red check tshirt' | Style: casual
+2025-04-07 21:42:52,945 - FashionAI - INFO - Python version: 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]
+2025-04-07 21:42:52,945 - FashionAI - INFO - System CPUs: 4
+2025-04-07 21:42:52,948 - FashionAI - INFO - Available RAM: 0.69 GB
+2025-04-07 21:42:52,949 - FashionAI - INFO - CUDA Available: False
+2025-04-07 21:42:52,949 - FashionAI - INFO - Loading Stable Diffusion pipeline...
+2025-04-07 21:42:58,608 - FashionAI - ERROR - Generation failed: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "C:\Users\Bhavyasree\Downloads\KalyanPro\ai-fashion-studio\target\classes\python\generate_clothing.py", line 56, in main
+    pipe = DiffusionPipeline.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "CompVis/stable-diffusion-v1-4",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        safety_checker=None
+        ^^^^^^^^^^^^^^^^^^^
+    ).to("cuda" if torch.cuda.is_available() else "cpu")
+    ^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\diffusers\pipelines\pipeline_utils.py", line 896, in from_pretrained
+    for name, (library_name, class_name) in logging.tqdm(init_dict.items(), desc="Loading pipeline components..."):
+                                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\diffusers\utils\logging.py", line 309, in __call__
+    return tqdm_lib.tqdm(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\tqdm\asyncio.py", line 24, in __init__
+    super().__init__(iterable, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\tqdm\std.py", line 1096, in __init__
+    self.sp = self.status_printer(self.fp)
+              ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\tqdm\std.py", line 448, in status_printer
+    getattr(sys.stderr, 'flush', lambda: None)()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+OSError: [Errno 22] Invalid argument
+2025-04-07 21:50:55,227 - FashionAI - INFO - === New Generation Request ===
+2025-04-07 21:50:55,228 - FashionAI - INFO - Prompt: 'red shirt ' | Style: casual
+2025-04-07 21:50:57,487 - FashionAI - INFO - Python version: 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]
+2025-04-07 21:50:57,487 - FashionAI - INFO - System CPUs: 4
+2025-04-07 21:50:57,491 - FashionAI - INFO - Available RAM: 0.70 GB
+2025-04-07 21:50:57,492 - FashionAI - INFO - CUDA Available: False
+2025-04-07 21:50:57,492 - FashionAI - INFO - Loading Stable Diffusion pipeline...
+2025-04-07 21:51:03,122 - FashionAI - ERROR - Generation failed: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "C:\Users\Bhavyasree\Downloads\KalyanPro\ai-fashion-studio\target\classes\python\generate_clothing.py", line 56, in main
+    pipe = DiffusionPipeline.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        "CompVis/stable-diffusion-v1-4",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        safety_checker=None
+        ^^^^^^^^^^^^^^^^^^^
+    ).to("cuda" if torch.cuda.is_available() else "cpu")
+    ^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\diffusers\pipelines\pipeline_utils.py", line 896, in from_pretrained
+    for name, (library_name, class_name) in logging.tqdm(init_dict.items(), desc="Loading pipeline components..."):
+                                            ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\diffusers\utils\logging.py", line 309, in __call__
+    return tqdm_lib.tqdm(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\tqdm\asyncio.py", line 24, in __init__
+    super().__init__(iterable, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\tqdm\std.py", line 1096, in __init__
+    self.sp = self.status_printer(self.fp)
+              ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Bhavyasree\AppData\Local\Programs\Python\Python313\Lib\site-packages\tqdm\std.py", line 448, in status_printer
+    getattr(sys.stderr, 'flush', lambda: None)()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+OSError: [Errno 22] Invalid argument

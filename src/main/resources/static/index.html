@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metaverse Fashion Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .generator-form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3a5bd9;
+        }
+        button:disabled {
+            background-color: #b0b7d1;
+            cursor: not-allowed;
+        }
+        .result-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        #generatedImage {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .loading {
+            display: none;
+            margin: 20px 0;
+            font-style: italic;
+            color: #6c757d;
+        }
+        .error {
+            color: #e74a3b;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Metaverse Fashion Generator</h1>
+
+<div class="generator-form">
+    <div class="form-group">
+        <label for="prompt">Design Description</label>
+        <input type="text" id="prompt" placeholder="e.g., cyberpunk jacket with neon lights">
+    </div>
+
+    <div class="form-group">
+        <label for="style">Fashion Style</label>
+        <select id="style">
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+            <option value="sporty">Sporty</option>
+            <option value="cyberpunk">Cyberpunk</option>
+            <option value="fantasy">Fantasy</option>
+        </select>
+    </div>
+
+    <button id="generateBtn" onclick="generateDesign()">Generate Design</button>
+
+    <div id="loading" class="loading">
+        Generating your fashion design... (This may take 20-30 seconds)
+    </div>
+
+    <div id="error" class="error"></div>
+</div>
+
+<div class="result-container">
+    <img id="generatedImage" alt="Generated fashion design">
+</div>
+
+<script>
+    async function generateDesign() {
+        const prompt = document.getElementById('prompt').value;
+        const style = document.getElementById('style').value;
+        const generateBtn = document.getElementById('generateBtn');
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        const imageElement = document.getElementById('generatedImage');
+
+        // Reset UI
+        errorDiv.style.display = 'none';
+        imageElement.style.display = 'none';
+        generateBtn.disabled = true;
+        loading.style.display = 'block';
+
+        try {
+            // Encode the prompt for URL
+            const encodedPrompt = encodeURIComponent(prompt);
+
+            // Call your Spring Boot endpoint
+            const response = await fetch(`/api/designs/${encodedPrompt}?style=${style}`, {
+                method: 'POST'
+            });
+
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+
+            // Get the image blob
+            const imageBlob = await response.blob();
+            const imageUrl = URL.createObjectURL(imageBlob);
+
+            // Display the image
+            imageElement.src = imageUrl;
+            imageElement.style.display = 'block';
+
+        } catch (error) {
+            errorDiv.textContent = `Error: ${error.message}`;
+            errorDiv.style.display = 'block';
+            console.error('Generation failed:', error);
+        } finally {
+            generateBtn.disabled = false;
+            loading.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
